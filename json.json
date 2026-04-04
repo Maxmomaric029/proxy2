@@ -1,0 +1,11 @@
+[
+  {
+    "enabled": true,
+    "name": "MAX-HACK INDEPENDIENTE 🩸",
+    "url": [
+      "*/assetindexer",
+      "*/MajorLogin"
+    ],
+    "script": "async function onResponse(context, request, response) { \n  // TUS ENLACES DE GITHUB (Cámbialos por los tuyos reales)\n  const MIS_HUESOS = 'https://cdn.jsdelivr.net/gh/Maxmomaric029/FF-Assets@main/3dr.txt'; \n  const MI_LOBBY = 'https://cdn.jsdelivr.net/gh/Maxmomaric029/FF-Assets@main/lo.txt';\n\n  // INYECCIÓN DE HUESOS (Aimbot/Cabeza)\n  if (request.url.includes('/assetindexer')) {\n    try {\n      const res = await fetch(MIS_HUESOS);\n      const data = await res.arrayBuffer();\n      response.body = new Uint8Array(data);\n      response.statusCode = 200;\n      response.headers['Content-Type'] = 'application/octet-stream';\n      delete response.headers['Content-Length'];\n      console.log('Inyeccion Exitosa - Sin Keys externas');\n    } catch (e) { \n      console.log('Error al conectar a tu GitHub');\n    }\n  }\n\n  / WORDLYY\n  if (request.url.includes('/MajorLogin')) {\n    try {\n      const res = await fetch(MI_LOBBY);\n      const text = await res.text();\n      response.body = text;\n      response.statusCode = 400;\n    } catch (e) {\n      response.body = 'BIENVENIDO AL IMPERIO DE MAX';\n    }\n  }\n\n  return response;\n}"
+  }
+]
